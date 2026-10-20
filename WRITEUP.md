@@ -46,11 +46,11 @@ TFIDF got important keywords right, but because I didn't mention any names, it h
 
 ### Which kind of question did TF-IDF handle best, and which worst? By how much?
 
-XXXX
+I think TF-IDF handled questions that revealed significant events in the plot, but I think the more niche emotional aspects not so. It did terribly for reworded and vague question, but it did fairly okay for detail. Not so great for real requests.
 
 ### The misses you looked at: what do they have in common?
 
-XXXX
+I think the plot summary for Parasite (2019) wasn't able to recognize Park as a name. I think Free Willy as the top 1 screwed up the TF-IDF because in Free Willy, they are refering to an actual park.
 
 ## Part 5: Embeddings
 
