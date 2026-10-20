@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*8 user turns. Tool outputs and reasoning omitted.*
+*10 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -171,5 +171,113 @@ Which number do you want?
 - 🔧 `Bash`: Set the three TF-IDF settings to the student's choices
 - 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
 - 🔧 `Bash`: Commit and push Part 1, check the template for updates
+The file now has these settings:
+
+```
+REMOVE_STOP_WORDS = True
+MIN_MOVIES = 2
+REPEATS_COUNT_LESS = True
+```
+
+The slot now reads:
+
+```
+### The settings you chose, and why
+
+- REMOVE_STOP_WORDS = True: Removing stop words helps to de-convolute the data and keeps important keywords that are distinctive to a movie.
+- MIN_MOVIES = 2: Minimum movies helps to keep common correlation between summaries ensuring accuracy.
+- REPEATS_COUNT_LESS = True: Repeats count less helps to ensure that the data is not identical and keeps variance.
+```
+
+```
+$ python3 dump_transcript.py && git add WRITEUP.md tfidf_settings.py && git commit -m "Part 1 done" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main 7058217] Part 1 done
+ 2 files changed, 6 insertions(+), 4 deletions(-)
+To https://github.com/cluno113/comp440-retrieval.git
+   0f517bf..7058217  main -> main
+```
+
+Part 1 is saved on GitHub. The template has no new commits.
+
+**Part 2: Top terms (about 6 minutes)**
+
+The setup job printed `Checked 38 packages`, so the packages are ready.
+
+Name two movies you know well. The ones you rated in HW1 are all in the collection.
+
+**User:**
+Dirty Dancing and Mamma Mia
+
+**Claude:**
+- 🔧 `Bash`: Show the top TF-IDF terms for the two movies
+- 🔧 `Bash`: Show the top TF-IDF terms for Mamma Mia
+Here are both outputs. The `== not found` line at the end of the first came from a separator I typed into the command. It isn't from the script, so I ran Mamma Mia on its own.
+
+```
+$ uv run python top_terms.py "Dirty Dancing"
+Dirty Dancing (1987): the 15 words with the highest TF-IDF weight in its plot summary.
+
+     word               weight  count here  movies
+  1. stepping            0.301           1       2
+  2. shoes               0.301           1       2
+  3. tedium              0.291           1       3
+  4. frances             0.291           1       3
+  5. accompanies         0.283           1       4
+  6. usual               0.276           1       5
+  7. expecting           0.266           1       7
+  8. surprised           0.261           1       8
+  9. 17                  0.238           1      16
+ 10. unexpectedly        0.223           1      25
+ 11. professional        0.217           1      29
+ 12. falling             0.216           1      30
+ 13. baby                0.205           1      41
+ 14. summer              0.197           1      52
+ 15. year                0.145           1     219
+
+count here: how many times the word is in this plot summary. movies: how many of the 4,309 plot summaries have it.
+
+The plot summary: Expecting the usual tedium that accompanies a summer in the Catskills with her family, 17-year-old Frances 'Baby' Houseman is surprised to find herself stepping into the shoes of a professional hoofer—and unexpectedly falling in love.
+
+Your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 2, REPEATS_COUNT_LESS = True.
+```
+
+```
+$ uv run python top_terms.py "Mamma Mia"
+Mamma Mia! (2008): the 15 words with the highest TF-IDF weight in its plot summary.
+
+     word               weight  count here  movies
+  1. owns                0.292           1       2
+  2. greek               0.268           1       5
+  3. invited             0.258           1       7
+  4. daughter            0.254           2     168
+  5. biological          0.250           1       9
+  6. spirited            0.250           1       9
+  7. mother              0.249           2     182
+  8. independent         0.247           1      10
+  9. lovers              0.233           1      15
+ 10. hotel               0.213           1      27
+ 11. raised              0.212           1      28
+ 12. marry               0.211           1      29
+ 13. secretly            0.208           1      32
+ 14. finding             0.205           1      35
+ 15. hopes               0.199           1      41
+
+count here: how many times the word is in this plot summary. movies: how many of the 4,309 plot summaries have it.
+
+The plot summary: An independent, single mother who owns a small hotel on a Greek island is about to marry off the spirited young daughter she's raised alone. But, the daughter has secretly invited three of her mother's ex-lovers in the hopes of finding her biological father.
+
+Your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 2, REPEATS_COUNT_LESS = True.
+```
+
+For each movie, what do the top terms get right, and what do they get wrong, about what makes it distinctive? A sentence or two is enough.
+
+**User:**
+I think tedium for Dirty Dancing is from a summarizer with a negative review on the movie. But, they mostly get major themes of the movie such as 'Greek' for Mamma Mia and 'stepping' for Dirty Dancing.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit and push Part 2, check the template for updates
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
