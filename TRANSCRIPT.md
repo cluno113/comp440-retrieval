@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*10 user turns. Tool outputs and reasoning omitted.*
+*14 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -279,5 +279,120 @@ I think tedium for Dirty Dancing is from a summarizer with a negative review on 
 **Claude:**
 - 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
 - 🔧 `Bash`: Commit and push Part 2, check the template for updates
+I've written your answer in. The slot now reads:
+
+```
+### Your movies: what do the top terms get right and wrong about what makes each one distinctive?
+
+I think tedium for Dirty Dancing is from a summarizer with a negative review on the movie. But, they mostly get major themes of the movie such as 'Greek' for Mamma Mia and 'stepping' for Dirty Dancing.
+```
+
+```
+$ python3 dump_transcript.py && git add WRITEUP.md tfidf_settings.py && git commit -m "Part 2 done" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main 84531c4] Part 2 done
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+To https://github.com/cluno113/comp440-retrieval.git
+   7058217..84531c4  main -> main
+```
+
+Part 2 is saved on GitHub, and the template has no new commits.
+
+**Part 3: Your own searches (about 7 minutes)**
+
+You'll run three searches of your own. What's your first question? You could describe a movie you know in your own words, without its title.
+
+**User:**
+A young girl meets an old man at a bar. The old man is a famous actor on a business trip in Tokyo. Their strange relationship takes them around the city and they navigate their relationships with their partners while engaging in a soul connection with each other.
+
+**Claude:**
+- 🔧 `Bash`: Run the student's first search with TF-IDF
+```
+$ uv run python search.py 'A young girl meets an old man at a bar. The old man is a famous actor on a business trip in Tokyo. Their strange relationship takes them around the city and they navigate their relationships with their partners while engaging in a soul connection with each other.'
+Question: A young girl meets an old man at a bar. The old man is a famous actor on a business trip in Tokyo. Their strange ...
+
+TF-IDF, top 10:
+   1. 0.157  McCabe & Mrs. Miller (1971)   matched: partners, business, old
+   2. 0.152  Little Rascals, The (1994)   matched: old, relationship, man
+   3. 0.152  Cure (1997)   matched: connection, tokyo
+   4. 0.150  The Disaster Artist (2017)   matched: actor, meets
+   5. 0.143  Life as a House (2001)   matched: engaging, man, takes
+   6. 0.129  Driving Miss Daisy (1989)   matched: relationship, relationships, old
+   7. 0.126  Love Actually (2003)   matched: relationships
+   8. 0.118  Tales from the Hood (1995)   matched: strange, business
+   9. 0.117  Knocked Up (2007)   matched: navigate, relationship
+  10. 0.117  Bowling for Columbine (2002)   matched: old, soul, man, girl, young
+      Ignored as stop words: an, at, the, is, on, in, their, them, around, and, they, with, while, each, other.
+```
+
+In each row, the number is the movie's TF-IDF score, and "matched" lists the words from your question that appear in its summary.
+
+What's your second question?
+
+**User:**
+A trouble man with lots of financial troubles hires someone to kidnap his wife in an attempt to earn ransom from his wife's father.
+
+**Claude:**
+- 🔧 `Bash`: Run the student's second search with TF-IDF
+```
+$ uv run python search.py "A trouble man with lots of financial troubles hires someone to kidnap his wife in an attempt to earn ransom from his wife's father."
+Question: A trouble man with lots of financial troubles hires someone to kidnap his wife in an attempt to earn ransom from his wife's father.
+
+TF-IDF, top 10:
+   1. 0.189  Fargo (1996)   matched: ransom, kidnap, wife, father, man
+   2. 0.162  Ruthless People (1986)   matched: kidnap, wife
+   3. 0.149  Coming to America (1988)   matched: lots, trouble
+   4. 0.140  We Bought a Zoo (2011)   matched: financial, trouble, wife
+   5. 0.138  That Thing You Do! (1996)   matched: lots
+   6. 0.130  Way of the Gun, The (2000)   matched: ransom, man
+   7. 0.129  100 Women (2002)   matched: troubles, man
+   8. 0.129  Cat Ballou (1965)   matched: hires, father
+   9. 0.127  Perfect Murder, A (1998)   matched: financial, wife, man
+  10. 0.112  Click (2006)   matched: earn, wife
+      Ignored as stop words: with, of, someone, to, his, in, an, from.
+```
+
+What's your third question?
+
+**User:**
+A man and a woman are neighbors with distant partners. When both of their partners leave, they find themselves healing their loneliness from their marriages with each other. They navigate the streets of Hong Kong as friends, and develop stronger feelings as their lives slowly become more intertwined and dependent on one another.
+
+**Claude:**
+- 🔧 `Bash`: Run the student's third search with TF-IDF
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+```
+$ uv run python search.py "A man and a woman are neighbors with distant partners. When both of their partners leave, they find themselves healing their loneliness from their marriages with each other. They navigate the streets of Hong Kong as friends, and develop stronger feelings as their lives slowly become more intertwined and dependent on one another."
+Question: A man and a woman are neighbors with distant partners. When both of their partners leave, they find themselves healing their loneliness from their marriages ...
+
+TF-IDF, top 10:
+   1. 0.177  Pride & Prejudice (2005)   matched: marriages, dependent, distant
+   2. 0.141  Chungking Express (Chung Hing sam lam) (1994)   matched: hong, kong
+   3. 0.134  Crazies, The (2010)   matched: neighbors, friends
+   4. 0.134  Supercop (Police Story 3: Supercop) (Jing cha gu shi III: Chao ji jing cha) (1992)   matched: hong, kong
+   5. 0.130  Adventures of Buckaroo Banzai Across the 8th Dimension, The (1984)   matched: hong, kong
+   6. 0.119  Object of My Affection, The (1998)   matched: develop, feelings
+   7. 0.115  Payback (1999)   matched: partners, leave, friends
+   8. 0.114  Citizenfour (2014)   matched: hong, kong
+   9. 0.111  McCabe & Mrs. Miller (1971)   matched: partners
+  10. 0.111  Ip Man 2 (2010)   matched: hong, kong, man
+      Ignored as stop words: and, are, with, when, both, of, their, they, find, themselves, from, each, other, the, as and 5 more.
+      Not in the vocabulary (in fewer than 2 summaries, or none): healing.
+```
+
+I've written your three questions into the slot. It now reads:
+
+```
+### Your questions, as you typed them
+
+1. A young girl meets an old man at a bar. The old man is a famous actor on a business trip in Tokyo. Their strange relationship takes them around the city and they navigate their relationships with their partners while engaging in a soul connection with each other.
+2. A trouble man with lots of financial troubles hires someone to kidnap his wife in an attempt to earn ransom from his wife's father.
+3. A man and a woman are neighbors with distant partners. When both of their partners leave, they find themselves healing their loneliness from their marriages with each other. They navigate the streets of Hong Kong as friends, and develop stronger feelings as their lives slowly become more intertwined and dependent on one another.
+```
+
+Did the movies you meant come up? What did TF-IDF get right, and what did it get wrong? A sentence or two is enough.
+
+**User:**
+TFIDF got important keywords right, but because I didn't mention any names, it had a hard time identifying my first movie 'Lost in Translation' and my third movie 'In the Mood for Love'. I think its because words like woman and man are not very specific.
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
