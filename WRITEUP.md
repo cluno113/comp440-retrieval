@@ -28,7 +28,7 @@ Embeddings will do better because it isn't looking for words that are rare or sp
 
 ### Your movies: what do the top terms get right and wrong about what makes each one distinctive?
 
-XXXX
+I think tedium for Dirty Dancing is from a summarizer with a negative review on the movie. But, they mostly get major themes of the movie such as 'Greek' for Mamma Mia and 'stepping' for Dirty Dancing.
 
 ## Part 3: Your own searches
 
