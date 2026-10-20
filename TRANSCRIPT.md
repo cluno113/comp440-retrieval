@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*5 user turns. Tool outputs and reasoning omitted.*
+*8 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -106,5 +106,70 @@ Second prediction: **for vague descriptions, which method will do better, and wh
 
 **User:**
 Embeddings will do better because it isn't looking for words that are rare or special, it is looking into words that are related. Vague questions will lead to vague answers, but at least they will be on topic.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit and push the Part 0 predictions
+- 🔧 `Read`: /Users/clairekuno/Documents/Github/comp440-retrieval/tfidf_settings.py
+```
+### Vague descriptions: which method will do better, and why?
+
+Embeddings will do better because it isn't looking for words that are rare or special, it is looking into words that are related. Vague questions will lead to vague answers, but at least they will be on topic.
+```
+
+```
+$ python3 dump_transcript.py && git add WRITEUP.md && git commit -m "Part 0 done" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main 0f517bf] Part 0 done
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+To https://github.com/cluno113/comp440-retrieval.git
+   8ddbec7..0f517bf  main -> main
+```
+
+Setup is done, and your predictions are saved on GitHub.
+
+**Part 1: Build the TF-IDF model (about 6 minutes)**
+
+Most people get through Part 3 or 4 in class. Whatever is left, including Part 5, is due 8:00am Thursday, October 22.
+
+`tfidf_settings.py` has three settings:
+
+1. **`REMOVE_STOP_WORDS`** (True or False; now **False**). When True, it drops about 300 common words before scoring. Take "The dog ran to the store": with True, only "dog ran store" is left. The list is scikit-learn's, and it goes further than "the" and "of". It also drops words like "bill", "fire", "name" and "system", and the number words "one" through "twelve", except "seven".
+
+2. **`MIN_MOVIES`** (a whole number, 1 or more; now **1**). It keeps only the words that appear in at least that many plot summaries. Say "Gondor" appears in just one summary. Then 1 keeps it, and 2 or more drops it. 1 is the only value that keeps a word found in a single summary.
+
+3. **`REPEATS_COUNT_LESS`** (True or False; now **False**). When True, a word that repeats within one summary counts as 1 + log(count) instead of its raw count. So "shark" appearing 4 times counts as about 2.4 instead of 4.
+
+Words are always lowercased, so "Dog" and "dog" are one word. That isn't a setting.
+
+What value do you choose for each of the three, and why? Give a reason for each, all in one reply. A sentence apiece is enough.
+
+**User:**
+1. Drop about 300 common words. 2. Keep summaries that share at least one common word. 3. True
+
+**Claude:**
+I read those as choices without reasons. Two things are still missing:
+
+- **Reasons.** Each setting needs one, even if it's a short clause.
+- **The number for `MIN_MOVIES`.** It counts how many summaries a word must appear in to be kept, and it doesn't work per summary. If 1 is what you meant, that keeps every word, including words found in only one summary. If you meant something else, tell me the number.
+
+Can you give me a reason for each setting, along with your `MIN_MOVIES` number? A sentence apiece is enough.
+
+**User:**
+Removing stop words helps to de-convolute the data and keeps important keywords that are distinctive to a movie. Minimum movies helps to keep common correlation between summaries ensuring accuracy. Repeats count less helps to ensure that the data is not identical and keeps variance.
+
+**Claude:**
+Thanks, those are your three reasons. One thing is still missing: the number for `MIN_MOVIES`. It can be any whole number from 1 up. 1 keeps every word. 2 drops the words found in only one summary, and higher numbers drop more.
+
+Which number do you want?
+
+**User:**
+2
+
+**Claude:**
+- 🔧 `Bash`: Set the three TF-IDF settings to the student's choices
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit and push Part 1, check the template for updates
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
