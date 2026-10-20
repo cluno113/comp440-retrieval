@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*21 user turns. Tool outputs and reasoning omitted.*
+*23 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -552,5 +552,61 @@ write in my two w026 as my answer
 **Claude:**
 - 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
 - 🔧 `Bash`: Commit and push Part 4, check the template for updates
+- 🔧 `Bash`: Run the question bank with embeddings
+I've written your two sentences in. The slot now reads:
+
+```
+### The misses you looked at: what do they have in common?
+
+I think the plot summary for Parasite (2019) wasn't able to recognize Park as a name. I think Free Willy as the top 1 screwed up the TF-IDF because in Free Willy, they are refering to an actual park.
+```
+
+One caveat: this answer rests on a single question, and other misses may have failed for different reasons.
+
+```
+$ python3 dump_transcript.py && git add WRITEUP.md tfidf_settings.py results/tfidf.json && git commit -m "Part 4 done" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main 92be2f4] Part 4 done
+ 2 files changed, 56761 insertions(+), 2 deletions(-)
+ create mode 100644 results/tfidf.json
+To https://github.com/cluno113/comp440-retrieval.git
+   b6e1fb5..92be2f4  main -> main
+```
+
+Part 4 is saved on GitHub, and the template has no new commits.
+
+**Part 5: Embeddings (about 12 minutes)**
+
+The model finished downloading during setup. I've started the question bank running with embeddings, which takes a minute or so.
+
+Meanwhile, recall October 1. GloVe gave each word a list of numbers, and words used in similar contexts got similar lists. A sentence model does the same for a whole sentence or plot summary. It reads all the words together and produces one list of numbers for the whole text. Texts that mean similar things get similar lists, even when they share few words. Search then ranks the summaries whose lists are closest to your question's.
+
+What is a sentence embedding, in your own words? Use one of your own Part 3 questions or movies as the example. A sentence or two is enough.
+
+**User:**
+<task-notification>
+<task-id>bxqdb7025</task-id>
+<tool-use-id>toolu_01GXcHEkgrkRqKejb9cGb4Yw</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-clairekuno-Documents-Github-comp440-retrieval/0ccb8251-0f4a-4707-b54a-480d6ff7b697/tasks/bxqdb7025.output</output-file>
+<status>completed</status>
+<summary>Background command "Run the question bank with embeddings" completed (exit code 0)</summary>
+</task-notification>
+
+**Claude:**
+- 🔧 `Bash`: Check the last lines of the embedding run
+The embedding run has finished. Its last line:
+
+```
+Saved every question's top 10 in results/embed.json. To look through them: uv run python site.py
+```
+
+I'll show you its full scores once your sentence-embedding answer is in.
+
+**User:**
+save my progress i
+
+**Claude:**
+- 🔧 `Skill`: save
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
