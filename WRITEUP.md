@@ -34,11 +34,13 @@ I think tedium for Dirty Dancing is from a summarizer with a negative review on 
 
 ### Your questions, as you typed them
 
-XXXX
+1. A young girl meets an old man at a bar. The old man is a famous actor on a business trip in Tokyo. Their strange relationship takes them around the city and they navigate their relationships with their partners while engaging in a soul connection with each other.
+2. A trouble man with lots of financial troubles hires someone to kidnap his wife in an attempt to earn ransom from his wife's father.
+3. A man and a woman are neighbors with distant partners. When both of their partners leave, they find themselves healing their loneliness from their marriages with each other. They navigate the streets of Hong Kong as friends, and develop stronger feelings as their lives slowly become more intertwined and dependent on one another.
 
 ### Did the movies you meant come up? What did TF-IDF get right and wrong?
 
-XXXX
+TFIDF got important keywords right, but because I didn't mention any names, it had a hard time identifying my first movie 'Lost in Translation' and my third movie 'In the Mood for Love'. I think its because words like woman and man are not very specific.
 
 ## Part 4: The question bank
 
