@@ -10,11 +10,11 @@ Part 0 predictions stay as you first wrote them; Part 5 asks what you would chan
 
 ### Questions that name a character, place or thing: which method will do better, and why?
 
-XXXX
+TF-IDF because it looks at plot summary in correspondence with a question, so instead of finding ranks of words, it will better isolate parts of the document that carries an answer close to the character, place, or thing.
 
 ### Vague descriptions: which method will do better, and why?
 
-XXXX
+Embeddings will do better because it isn't looking for words that are rare or special, it is looking into words that are related. Vague questions will lead to vague answers, but at least they will be on topic.
 
 ## Part 1: Build the TF-IDF model
 
