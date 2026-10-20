@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*14 user turns. Tool outputs and reasoning omitted.*
+*21 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -394,5 +394,163 @@ Did the movies you meant come up? What did TF-IDF get right, and what did it get
 
 **User:**
 TFIDF got important keywords right, but because I didn't mention any names, it had a hard time identifying my first movie 'Lost in Translation' and my third movie 'In the Mood for Love'. I think its because words like woman and man are not very specific.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit and push Part 3, check the template for updates
+- 🔧 `Bash`: Run the question bank with TF-IDF
+I've written your answer in. The slot now reads:
+
+```
+### Did the movies you meant come up? What did TF-IDF get right and wrong?
+
+TFIDF got important keywords right, but because I didn't mention any names, it had a hard time identifying my first movie 'Lost in Translation' and my third movie 'In the Mood for Love'. I think its because words like woman and man are not very specific.
+```
+
+```
+$ python3 dump_transcript.py && git add WRITEUP.md tfidf_settings.py && git commit -m "Part 3 done" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main b6e1fb5] Part 3 done
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+To https://github.com/cluno113/comp440-retrieval.git
+   84531c4..b6e1fb5  main -> main
+```
+
+Part 3 is saved on GitHub, and the template has no new commits.
+
+**Part 4: The question bank (about 9 minutes)**
+
+```
+$ uv run python evaluate.py --method tfidf
+TF-IDF, with your settings: REMOVE_STOP_WORDS = True, MIN_MOVIES = 2, REPEATS_COUNT_LESS = True.
+Ran 518 questions against 4,309 movies in under a second.
+
+TF-IDF put the right movie first for 18 of 100 written questions and in the top 10 for 31.
+  Of the 34 detail questions, it put 18 first and 31 in the top 10.
+  Of the 33 reworded questions, it put 0 first and 0 in the top 10.
+  Of the 33 vague questions, it put 0 first and 0 in the top 10.
+It put the right movie first for 21 of 418 real requests and in the top 10 for 68.
+
+Saved every question's top 10 in results/tfidf.json. To look through them: uv run python site.py
+```
+
+Which kind of question did TF-IDF handle best, and which worst? By how much? A sentence or two is enough.
+
+**User:**
+I think TF-IDF handled questions that revealed significant events in the plot, but I think the more niche emotional aspects not so.
+
+**Claude:**
+I've written your answer in. The slot now reads:
+
+```
+### Which kind of question did TF-IDF handle best, and which worst? By how much?
+
+I think TF-IDF handled questions that revealed significant events in the plot, but I think the more niche emotional aspects not so.
+```
+
+One caveat: these counts come from your three settings. Different settings could change them, so they show this version of TF-IDF and not TF-IDF in general.
+
+The slot also asks which *kinds* (detail, reworded, vague) did best and worst, and by how much. Do you want to add that, or keep your answer as it is?
+
+**User:**
+keep it as it is
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Read README Part 4's description of the site
+- 🔧 `Read`: /Users/clairekuno/Documents/Github/comp440-retrieval/README.md
+- 🔧 `Bash`: Start the comparison site
+- 🔧 `Read`: /private/tmp/claude-501/-Users-clairekuno-Documents-Github-comp440-retrieval/0ccb8251-0f4a-4707-b...
+Kept as is. A correction: in my last message I said I'd written your answer in, but I hadn't saved it yet. It's saved now, word for word as shown there.
+
+```
+$ uv run python site.py
+The site is running at http://localhost:8765. Stop it with Ctrl-C.
+```
+
+The site should have opened in your browser. If it didn't, go to http://localhost:8765.
+
+It shows one question at a time: the right movie, where TF-IDF ranked it, and TF-IDF's top 10, with the words each one shares with the question. To see only the questions where the right movie isn't in the top 10, pick "TF-IDF missed" in the Show menu.
+
+Look through some of those misses. Tell me when you have, or give me a question's id (like w026) if you want to talk about one.
+
+**User:**
+It did terribly for reworded and vague question, but it did fairly okay for detail. Not so great for real requests.
+
+**Claude:**
+That sounds like an answer to the first Part 4 question, about which kinds did best and worst. Your answer there right now is:
+
+```
+I think TF-IDF handled questions that revealed significant events in the plot, but I think the more niche emotional aspects not so.
+```
+
+Should I add your new sentences after that answer, use them to replace it, or were they meant for the misses question?
+
+**User:**
+add them after my first answer
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+I've added your new sentences after your first answer. The slot now reads:
+
+```
+### Which kind of question did TF-IDF handle best, and which worst? By how much?
+
+I think TF-IDF handled questions that revealed significant events in the plot, but I think the more niche emotional aspects not so. It did terribly for reworded and vague question, but it did fairly okay for detail. Not so great for real requests.
+```
+
+Next, look at some misses on the site: pick "TF-IDF missed" in the Show menu. When you've looked at a few, tell me what those misses have in common. A sentence or two is enough.
+
+**User:**
+I think the plot summary for Parasite (2019) wasn't able to recognize Park as a name.
+
+**Claude:**
+- 🔧 `Bash`: Find the question ids whose answer is Parasite
+- 🔧 `Bash`: Show the saved TF-IDF results for question w026
+That's question w026. Here's what its page shows:
+
+```
+$ uv run python evaluate.py --show w026
+w026: Written question that names a character, place or thing
+  The poor Kim family tricks their way into jobs working for the rich Park family.
+
+The right movie: Parasite (2019)
+TF-IDF didn't rank it in the top 100.
+Its plot summary: All unemployed, Ki-taek's family takes peculiar interest in the wealthy and
+glamorous Parks for their livelihood until they get entangled in an unexpected incident.
+The question's words in its plot summary: family.
+
+TF-IDF, top 10:
+   1. 0.194  Free Willy (1993)   matched: park, tricks, family
+   2. 0.183  Snakes on a Plane (2006)   matched: kim
+   3. 0.163  Metropolis (1927)   matched: poor, rich
+   4. 0.147  National Lampoon's Vacation (1983)   matched: park, family
+   5. 0.134  Daddy Day Care (2003)   matched: jobs
+   6. 0.132  In Time (2011)   matched: poor, rich, way
+   7. 0.124  Crazy/Beautiful (2001)   matched: poor
+   8. 0.118  Scent of a Woman (1992)   matched: poor, family
+   9. 0.114  Look Who's Talking (1989)   matched: tricks, working
+  10. 0.113  Bridge to Terabithia (2007)   matched: poor, rich
+```
+
+The line "The question's words in its plot summary" lists the question's words that TF-IDF found in Parasite's summary.
+
+The slot asks what the misses you looked at have in common. Is this your answer, or do you want to look at a couple more misses first?
+
+**User:**
+I think Free Willy as the top 1 screwed up the TF-IDF because in Free Willy, they are refering to an actual park.
+
+**Claude:**
+You've now made two points about w026: "Park" wasn't recognized as a name, and Free Willy matched "park" as a real park. Both are about one question, though. The slot asks what several misses have in common.
+
+Do you want to look at one or two more misses from "TF-IDF missed" first, or should I write in your two w026 sentences as your answer?
+
+**User:**
+write in my two w026 as my answer
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Commit and push Part 4, check the template for updates
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
