@@ -20,7 +20,9 @@ Embeddings will do better because it isn't looking for words that are rare or sp
 
 ### The settings you chose, and why
 
-XXXX
+- REMOVE_STOP_WORDS = True: Removing stop words helps to de-convolute the data and keeps important keywords that are distinctive to a movie.
+- MIN_MOVIES = 2: Minimum movies helps to keep common correlation between summaries ensuring accuracy.
+- REPEATS_COUNT_LESS = True: Repeats count less helps to ensure that the data is not identical and keeps variance.
 
 ## Part 2: Top terms
 
