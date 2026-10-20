@@ -7,7 +7,7 @@ summarized as one-liners.
 <!-- transcript-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 | 2026-10-20T18:57:37.237Z -->
 ## Session `0ccb8251`, 2026-10-20 18:57:37
 
-*3 user turns. Tool outputs and reasoning omitted.*
+*5 user turns. Tool outputs and reasoning omitted.*
 
 **User:**
 *(ran `/setup`)*
@@ -66,5 +66,45 @@ The embedding model is ready: it matches the shipped vectors for 5 test movies.
 
 **User:**
 Claire Kuno
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Refresh transcript and commit name and date
+```
+$ python3 dump_transcript.py && git add WRITEUP.md && git commit -m "Name and date"
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+[main 586e2c7] Name and date
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+```
+
+```
+**Name:** Claire Kuno
+**Date:** October 20, 2026
+```
+
+**Part 0: Predictions (about 10 minutes)**
+
+Keyword search (TF-IDF) scores a movie by the words its plot summary shares with your question. Embedding search turns your question and each plot summary into a list of numbers, then ranks the movies whose numbers are closest to your question's.
+
+First prediction: **for questions that name a character, place or thing, which method will do better, and why?** A sentence or two is enough, and a guess is fine.
+
+**User:**
+TF-IDF because it looks at plot summary in correspondence with a question, so instead of finding ranks of words, it will better isolate parts of the document that carries an answer close to the character, place, or thing.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+I've written your first prediction in. The slot now reads:
+
+```
+### Questions that name a character, place or thing: which method will do better, and why?
+
+TF-IDF because it looks at plot summary in correspondence with a question, so instead of finding ranks of words, it will better isolate parts of the document that carries an answer close to the character, place, or thing.
+```
+
+Second prediction: **for vague descriptions, which method will do better, and why?** A sentence or two is enough.
+
+**User:**
+Embeddings will do better because it isn't looking for words that are rare or special, it is looking into words that are related. Vague questions will lead to vague answers, but at least they will be on topic.
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
