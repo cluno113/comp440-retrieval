@@ -608,5 +608,172 @@ save my progress i
 
 **Claude:**
 - 🔧 `Skill`: save
+- 🔧 `Bash`: Refresh transcript, commit and push work in progress
+```
+$ python3 dump_transcript.py && git add WRITEUP.md tfidf_settings.py results/tfidf.json results/embed.json && git commit -m "Save work in progress" && git push
+Wrote TRANSCRIPT.md: 1 session(s).
+1 session(s) found; this session in TRANSCRIPT.md: yes.
+A  results/embed.json
+[main 5665a1e] Save work in progress
+ 1 file changed, 31610 insertions(+)
+ create mode 100644 results/embed.json
+To https://github.com/cluno113/comp440-retrieval.git
+   92be2f4..5665a1e  main -> main
+```
+
+Your work is saved on GitHub. You stopped at Part 5, step 2: the question "What is a sentence embedding, in your own words?"
+
+The rest is due 8:00am Thursday, October 22. Submit the form once, when you finish.
+
+To pick up again, open a terminal in this folder and run `claude`. It will find where you left off.
 
 <!-- end-session: 0ccb8251-0f4a-4707-b54a-480d6ff7b697 -->
+
+<!-- transcript-session: 1df30533-d3c2-4960-a256-8b71b8c4bed9 | 2026-10-21T20:08:31.671Z -->
+## Session `1df30533`, 2026-10-21 20:08:31
+
+*8 user turns. Tool outputs and reasoning omitted.*
+
+**User:**
+open the assignment
+
+**Claude:**
+- 🔧 `Bash`: Show commit history, remotes, and upstream changes
+- 🔧 `Read`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Check the embedding model is downloaded
+- 🔧 `Bash`: Run the question bank with embeddings
+Welcome back, Claire. You're on **Part 5: Embeddings** (about 12 minutes). Parts 0 to 4 are saved, and nothing new has come from the class repo.
+
+The embedding model is downloaded:
+
+```
+The embedding model is ready: it matches the shipped vectors for 5 test movies.
+```
+
+The question bank is now running with embeddings in the background. It takes a minute or so.
+
+**What a sentence embedding is.** On October 1 you saw GloVe, which gives each word a list of numbers. Words used in similar contexts get similar lists, so "film" and "movie" land close together. A sentence model does the same thing for a whole sentence or plot summary. It turns the full text into one list of numbers (here, 384 of them). Two texts that mean similar things get lists that are close, even if they share few exact words. Search ranks the movies whose summary's list is closest to your question's list.
+
+Ask me anything about this. When you're ready: **What is a sentence embedding, in your own words? Use one of your own Part 3 questions or movies as the example.** A sentence or two is enough.
+
+**User:**
+<task-notification>
+<task-id>baf2xftcl</task-id>
+<tool-use-id>toolu_018UDYkbns1H2ZScDzuV2vBZ</tool-use-id>
+<output-file>/private/tmp/claude-501/-Users-clairekuno-Documents-Github-comp440-retrieval/1df30533-d3c2-4960-a256-8b71b8c4bed9/tasks/baf2xftcl.output</output-file>
+<status>completed</status>
+<summary>Background command "Run the question bank with embeddings" completed (exit code 0)</summary>
+</task-notification>
+
+**Claude:**
+- 🔧 `Read`: /private/tmp/claude-501/-Users-clairekuno-Documents-Github-comp440-retrieval/1df30533-d3c2-4960-a...
+The embedding run finished without errors. Its last line:
+
+```
+Saved every question's top 10 in results/embed.json. To look through them: uv run python site.py
+```
+
+I'll paste the full scores once your sentence-embedding answer is in the slot.
+
+**User:**
+A sentence embedding takes a sentence and analyzes the keywords in the sentence to calculate themes across words in the corpus.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+I wrote that into the slot. It now reads:
+
+> ### What is a sentence embedding, in your own words?
+>
+> A sentence embedding takes a sentence and analyzes the keywords in the sentence to calculate themes across words in the corpus.
+
+The question also asks for an example from one of your Part 3 questions or movies, like the Lost in Translation question. **What example would you add?** A sentence is enough. After that I'll paste the embedding scores.
+
+**User:**
+The Lost in Translation question, the embedding scores will align words such as man or woman, Tokyo or bar. It will find correlations across other plot descriptions and find the ones that match the best.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Start the comparison site
+- 🔧 `Bash`: Read the site's startup line
+The slot now reads:
+
+> ### What is a sentence embedding, in your own words?
+>
+> A sentence embedding takes a sentence and analyzes the keywords in the sentence to calculate themes across words in the corpus. The Lost in Translation question, the embedding scores will align words such as man or woman, Tokyo or bar. It will find correlations across other plot descriptions and find the ones that match the best.
+
+Here are the embedding run's results in full:
+
+```
+Embedding 518 questions. This can take a minute.
+Ran 518 questions against 4,309 movies in 10 seconds.
+
+Embeddings put the right movie first for 31 of 100 written questions and in the top 10 for 59.
+  Of the 34 detail questions, they put 24 first and 31 in the top 10.
+  Of the 33 reworded questions, they put 4 first and 18 in the top 10.
+  Of the 33 vague questions, they put 3 first and 10 in the top 10.
+They put the right movie first for 32 of 418 real requests and in the top 10 for 81.
+
+The embedding model reads only about the first 200 words of a question, so it ignored the end of 62 of the 418 real requests.
+
+Saved every question's top 10 in results/embed.json. To look through them: uv run python site.py
+```
+
+The site is running again:
+
+```
+The site is running at http://localhost:8765. Stop it with Ctrl-C.
+```
+
+Reload it. It now shows both methods. Its Show menu has three new choices, each with a count: "TF-IDF did better", "Embeddings did better" and "Both missed". If you'd like, I can also rerun your Part 3 questions with both methods.
+
+**Pick one question from "TF-IDF did better" and one from "Embeddings did better", and tell me when you've looked at them.**
+
+**User:**
+For "Embeddings did better", "Back to the Future" was an example of how TF-IDF generally was not far off from embeddings as it chose sequels of the movie as its top movie. It did the same for "Dark Knight". For "TF-IDF did better", there are multiple examples of when embeddings weren't able to trace the movie in their top 10, such as the "Princess Bride".
+
+**Claude:**
+Thanks, you've looked at one from each list. Now the slot question:
+
+**Where does each method do better, and why?** A sentence or two is enough. You can build on what you just told me about Back to the Future, The Dark Knight and The Princess Bride, or say it a new way.
+
+**User:**
+I think TF-IDF seems to verify movies from the names mentioned in the plot description. Embeddings look into every word written in the plot description, so it seems to miss the gem of rarity in names that are unique to movies.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+The slot now reads:
+
+> ### Where does each method do better, and why?
+>
+> I think TF-IDF seems to verify movies from the names mentioned in the plot description. Embeddings look into every word written in the plot description, so it seems to miss the gem of rarity in names that are unique to movies.
+
+One caution: you looked at three questions out of 518. A pattern from a few questions may not hold across the whole bank.
+
+Here are your two Part 0 predictions, as you wrote them:
+
+> **Questions that name a character, place or thing:** TF-IDF because it looks at plot summary in correspondence with a question, so instead of finding ranks of words, it will better isolate parts of the document that carries an answer close to the character, place, or thing.
+
+> **Vague descriptions:** Embeddings will do better because it isn't looking for words that are rare or special, it is looking into words that are related. Vague questions will lead to vague answers, but at least they will be on topic.
+
+**Which prediction held, which would you change now, and why?** A sentence or two is enough.
+
+**User:**
+I think both predictions held, as TF-IDF seems to highlight character names and plot places. But, this confused the algorithm as some movies share the same names such as "Cher". Embeddings did better generally and held up well against vague plot descriptions.
+
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Find the TF-IDF score lines from Part 4
+The slot now reads:
+
+> ### Your Part 0 predictions: which held, and which would you change?
+>
+> I think both predictions held, as TF-IDF seems to highlight character names and plot places. But, this confused the algorithm as some movies share the same names such as "Cher". Embeddings did better generally and held up well against vague plot descriptions.
+
+One score line you didn't mention: on detail questions, embeddings put the right movie first for 24 of 34, and TF-IDF did it for 18 (from your Part 4 run). Both got 31 of 34 into the top 10.
+
+Last slot. Thursday's class covers this, so a guess is fine. **How might you combine the two methods?** A sentence or two is enough.
+
+**User:**
+I would combine the two methods by having TF-IDF identify names, places, and important objects. Then, I would have embeddings compare the correlation between the important words of the question to the plot descriptions to find  the best matching movie.
+
+<!-- end-session: 1df30533-d3c2-4960-a256-8b71b8c4bed9 -->
