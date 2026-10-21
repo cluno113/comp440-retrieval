@@ -56,16 +56,16 @@ I think the plot summary for Parasite (2019) wasn't able to recognize Park as a 
 
 ### What is a sentence embedding, in your own words?
 
-XXXX
+A sentence embedding takes a sentence and analyzes the keywords in the sentence to calculate themes across words in the corpus. The Lost in Translation question, the embedding scores will align words such as man or woman, Tokyo or bar. It will find correlations across other plot descriptions and find the ones that match the best.
 
 ### Where does each method do better, and why?
 
-XXXX
+I think TF-IDF seems to verify movies from the names mentioned in the plot description. Embeddings look into every word written in the plot description, so it seems to miss the gem of rarity in names that are unique to movies.
 
 ### Your Part 0 predictions: which held, and which would you change?
 
-XXXX
+I think both predictions held, as TF-IDF seems to highlight character names and plot places. But, this confused the algorithm as some movies share the same names such as "Cher". Embeddings did better generally and held up well against vague plot descriptions.
 
 ### How might you combine the two methods?
 
-XXXX
+I would combine the two methods by having TF-IDF identify names, places, and important objects. Then, I would have embeddings compare the correlation between the important words of the question to the plot descriptions to find  the best matching movie.

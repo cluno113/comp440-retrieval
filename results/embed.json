@@ -4,7 +4,7 @@
  "settings": {
   "model": "sentence-transformers/all-MiniLM-L6-v2"
  },
- "made": "2026-10-20 14:50",
+ "made": "2026-10-21 15:08",
  "movies": 4309,
  "rank_note": "rank is the right movie's place in the list, 1 for first, or null if it is not in the first 100",
  "questions": [
