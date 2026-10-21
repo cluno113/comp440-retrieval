@@ -776,4 +776,10 @@ Last slot. Thursday's class covers this, so a guess is fine. **How might you com
 **User:**
 I would combine the two methods by having TF-IDF identify names, places, and important objects. Then, I would have embeddings compare the correlation between the important words of the question to the plot descriptions to find  the best matching movie.
 
+**Claude:**
+- 🔧 `Edit`: /Users/clairekuno/Documents/Github/comp440-retrieval/WRITEUP.md
+- 🔧 `Bash`: Save transcript, commit Part 5, push, check upstream
+- 🔧 `Skill`: checkpoint
+- 🔧 `Bash`: Check the commands run and list anything missing
+
 <!-- end-session: 1df30533-d3c2-4960-a256-8b71b8c4bed9 -->
